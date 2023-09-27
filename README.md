@@ -1,6 +1,6 @@
 # Crossfire-AimingDot
 Overview: 
-The Aiming Dot Controller is a simple GUI utility designed to help FPS gamers with aiming. By providing a customizable dot overlay on the screen, players can achieve better accuracy and precision in their games. This tool is especially beneficial for games or scenarios where there's no native crosshair or aiming reticle. Feel free to download and change the source code to fit your style, or you could just download the .exe file to use the app.
+The Aiming Dot Controller is a simple GUI utility designed to help FPS gamers with aiming. By providing a customizable dot overlay on the screen, players can achieve better game accuracy and precision. This tool is especially beneficial for games or scenarios where there's no native crosshair or aiming reticle. Feel free to download and change the source code to fit your style, or you could simply download the .exe file to use the app.
 
 Features: 
 Dynamic Positioning: Easily adjust the X and Y coordinates of the dot to suit your screen resolution or specific in-game location.
@@ -10,7 +10,7 @@ Easy to Use: With a minimalistic and straightforward interface, setting up the d
 Always on Top: The dot remains visible on top of other applications, ensuring uninterrupted gaming.
 
 How to Use: 
-Positioning: Use the "Dot X Coordinate" and "Dot Y Coordinate" fields to adjust the dot's position.
+Positioning: Use the "Dot X Coordinate" and "Dot Y Coordinate" fields to adjust the dot's position, by default, the dot is in the center of the screen.
 Choose Color: Click on the "Choose Color" button to pick a color for the dot.
 Adjust Size: Use the slider to adjust the size of the dot.
 Show Dot: Click on the "Show Dot" button to display the dot on the screen.
