@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import colorchooser, ttk
 from pynput import mouse
+import pystray
+from PIL import Image, ImageDraw
 
 class App:
     def __init__(self):
@@ -44,6 +46,13 @@ class App:
         self.toggle_btn.pack(pady=5)
 
         ttk.Button(self.root, text="Exit", command=self.root.quit).pack(pady=15)
+
+        self.tray_icon = None
+        icon_image = self.create_icon()
+        self.tray_icon = pystray.Icon("name", icon_image, "Aiming Dot Controller", self.create_menu())
+
+        # This binds the close button to minimize to tray instead of quitting
+        self.root.protocol('WM_DELETE_WINDOW', self.minimize_to_tray)
 
         self.root.mainloop()
 
@@ -90,6 +99,55 @@ class App:
     def reveal_dot(self):
         if self.dot_window:
             self.dot_window.deiconify()
+
+    # Create an icon for the system tray
+    def create_icon(self):
+        width = 64
+        height = 64
+        color1 = "white"
+        color2 = "black"
+
+        image = Image.new("RGB", (width, height), color1)
+        dc = ImageDraw.Draw(image)
+        dc.rectangle(
+            (width // 2, 0, width, height),
+            fill=color2
+        )
+        dc.rectangle(
+            (0, height // 2, width, height // 2),
+            fill=color2
+        )
+
+        return image
+
+    # Create menu for the system tray icon
+    def create_menu(self):
+        return (pystray.MenuItem('Open', self.show_from_tray),
+                pystray.MenuItem('Exit', self.exit_app))
+
+    # Function to show the main window from tray
+    def show_from_tray(self, icon, item):
+        self.tray_icon.stop()
+        self.tray_icon = None
+        self.root.deiconify()
+
+
+    # Minimize main window to system tray
+    def minimize_to_tray(self):
+        self.root.withdraw()
+        icon_image = self.create_icon()
+        self.tray_icon = pystray.Icon("name", icon_image, "Aiming Dot Controller", self.create_menu())
+        self.tray_icon.run()
+
+
+    # Exiting the app
+    def exit_app(self, icon, item):
+        if self.mouse_listener and self.mouse_listener.running:
+            self.mouse_listener.stop()
+        if self.dot_window:
+            self.dot_window.destroy()
+        self.tray_icon.stop()
+        self.root.quit()
 
 if __name__ == "__main__":
     App()

@@ -1,4 +1,7 @@
 # Crossfire-AimingDot
+V1.2
+    -- able to minimize to system tray now
+
 V1.1 
     -- add feature, dot disappears when holding the right click
     -- add "Hide dot"
