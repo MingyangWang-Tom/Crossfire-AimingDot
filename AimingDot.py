@@ -3,6 +3,7 @@ from tkinter import colorchooser, ttk
 from pynput import mouse
 import pystray
 from PIL import Image, ImageDraw
+import threading
 
 class App:
     def __init__(self):
@@ -27,10 +28,10 @@ class App:
 
         # Create and place the widgets
         ttk.Label(self.root, text="Dot X Coordinate:", foreground='white', background='#333').pack(pady=10)
-        ttk.Entry(self.root, textvariable=self.dot_x).pack(pady=5, padx=20, fill='x')
+        ttk.Entry(self.root, textvariable=self.dot_x).pack(pady=3, padx=20, fill='x')
 
         ttk.Label(self.root, text="Dot Y Coordinate:", foreground='white', background='#333').pack(pady=10)
-        ttk.Entry(self.root, textvariable=self.dot_y).pack(pady=5, padx=20, fill='x')
+        ttk.Entry(self.root, textvariable=self.dot_y).pack(pady=3, padx=20, fill='x')
 
         ttk.Label(self.root, text="Dot Size:", foreground='white', background='#333').pack(pady=10)
         ttk.Scale(self.root, from_=5, to=50, orient=tk.HORIZONTAL, variable=self.dot_size).pack(pady=5, padx=20, fill='x')
@@ -137,7 +138,7 @@ class App:
         self.root.withdraw()
         icon_image = self.create_icon()
         self.tray_icon = pystray.Icon("name", icon_image, "Aiming Dot Controller", self.create_menu())
-        self.tray_icon.run()
+        threading.Thread(target=self.tray_icon.run, daemon=True).start()
 
 
     # Exiting the app

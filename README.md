@@ -1,4 +1,7 @@
 # Crossfire-AimingDot
+V1.2.1
+    -- fix glitching issue
+
 V1.2
     -- able to minimize to system tray now
 
