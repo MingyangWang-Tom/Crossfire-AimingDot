@@ -5,6 +5,7 @@ import pystray
 from PIL import Image, ImageDraw
 import threading
 
+
 class App:
     def __init__(self):
         self.root = tk.Tk()
@@ -34,13 +35,14 @@ class App:
         ttk.Entry(self.root, textvariable=self.dot_y).pack(pady=3, padx=20, fill='x')
 
         ttk.Label(self.root, text="Dot Size:", foreground='white', background='#333').pack(pady=10)
-        ttk.Scale(self.root, from_=5, to=50, orient=tk.HORIZONTAL, variable=self.dot_size).pack(pady=5, padx=20, fill='x')
+        ttk.Scale(self.root, from_=5, to=50, orient=tk.HORIZONTAL, variable=self.dot_size).pack(pady=5, padx=20,
+                                                                                                fill='x')
 
         ttk.Button(self.root, text="Choose Color", command=self.choose_color).pack(pady=10)
         ttk.Label(self.root, textvariable=self.dot_color, foreground='white', background='#333').pack(pady=5)
 
         ttk.Button(self.root, text="Show Dot", command=self.show_dot).pack(pady=5)
-        ttk.Button(self.root, text="Hide Dot", command=self.hide_dot).pack(pady=5) 
+        ttk.Button(self.root, text="Hide Dot", command=self.hide_dot).pack(pady=5)
 
         # Toggle right-click behavior button
         self.toggle_btn = ttk.Button(self.root, text="Enable Right-Click Hide", command=self.toggle_mouse_listener)
@@ -69,7 +71,7 @@ class App:
         self.dot_window = tk.Toplevel(self.root)
         self.dot_window.overrideredirect(True)
         size = self.dot_size.get()
-        self.dot_window.geometry(f"+{self.dot_x.get()-size//2}+{self.dot_y.get()-size//2}")
+        self.dot_window.geometry(f"+{self.dot_x.get() - size // 2}+{self.dot_y.get() - size // 2}")
         self.dot_window.wm_attributes("-topmost", True)
         self.dot_window.wm_attributes("-transparentcolor", "white")
 
@@ -132,14 +134,12 @@ class App:
         self.tray_icon = None
         self.root.deiconify()
 
-
     # Minimize main window to system tray
     def minimize_to_tray(self):
         self.root.withdraw()
         icon_image = self.create_icon()
         self.tray_icon = pystray.Icon("name", icon_image, "Aiming Dot Controller", self.create_menu())
         threading.Thread(target=self.tray_icon.run, daemon=True).start()
-
 
     # Exiting the app
     def exit_app(self, icon, item):
@@ -149,6 +149,7 @@ class App:
             self.dot_window.destroy()
         self.tray_icon.stop()
         self.root.quit()
+
 
 if __name__ == "__main__":
     App()
