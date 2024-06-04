@@ -77,7 +77,7 @@ class App:
 
         canvas = tk.Canvas(self.dot_window, width=size, height=size, bg="white", bd=0, highlightthickness=0)
         canvas.pack()
-        canvas.create_oval(0, 0, size, size, fill=self.dot_color.get())
+        canvas.create_oval(0, 0, size, size, fill=self.dot_color.get(), outline="")
 
     def toggle_mouse_listener(self):
         if self.mouse_listener and self.mouse_listener.running:

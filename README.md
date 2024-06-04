@@ -2,6 +2,10 @@
 
 ## Version History
 
+### V2.0.1
+
+- Remove the black outline of the aiming dot
+
 ### V2.0.0
 
 - Minor performance improvement
