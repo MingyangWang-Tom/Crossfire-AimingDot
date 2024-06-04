@@ -35,7 +35,7 @@ class App:
         ttk.Entry(self.root, textvariable=self.dot_y).pack(pady=3, padx=20, fill='x')
 
         ttk.Label(self.root, text="Dot Size:", foreground='white', background='#333').pack(pady=10)
-        ttk.Scale(self.root, from_=5, to=50, orient=tk.HORIZONTAL, variable=self.dot_size).pack(pady=5, padx=20,
+        ttk.Scale(self.root, from_=2, to=50, orient=tk.HORIZONTAL, variable=self.dot_size).pack(pady=5, padx=20,
                                                                                                 fill='x')
 
         ttk.Button(self.root, text="Choose Color", command=self.choose_color).pack(pady=10)
